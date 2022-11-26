@@ -2,7 +2,7 @@ from datetime import datetime
 from aiogram.dispatcher import FSMContext
 from aiogram.types import Message, CallbackQuery
 from data.google_sheet import google_sheet_add
-from data.query_data import update_last_feedback, users_add, users_data, update_direction
+from data.query import update_last_feedback, users_add, users_data, update_direction
 from keyboards.default.menu_keyboard import menu
 from keyboards.inline.student_parts import mentors_data, mentors_full, mentors_soft, feedback_de3, yonalish, \
     feedback_q_li, feedback_n_li, feedback_q_siz

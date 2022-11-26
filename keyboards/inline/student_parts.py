@@ -1,5 +1,5 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from data.query_data import mentors_datas
+from data.query import mentors_datas
 from keyboards.inline.callback_data import data, full, soft, feed1, feed2, feed3
 
 yonalish = InlineKeyboardMarkup(

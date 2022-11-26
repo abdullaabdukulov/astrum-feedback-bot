@@ -3,7 +3,7 @@ from googleapiclient.discovery import build
 from google.oauth2 import service_account
 import datetime
 # from oauth2client.service_account import ServiceAccountCredentials
-from data.query_data import save_row
+from data.query import save_row
 
 service_account_file = '/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/Google_servis_data.json'
 
