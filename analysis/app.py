@@ -1,7 +1,6 @@
 from pathlib import Path
 import streamlit as st
 from st_aggrid import AgGrid
-from PIL import Image
 import plotly.express as px
 import requests
 from streamlit_lottie import st_lottie
@@ -11,9 +10,11 @@ import pandas as pd
 import schedule
 
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 def update_data():
-    service_account_file = 'data/Google_servis_data.json'
+    service_account_file = f'{BASE_DIR}/data/Google_servis_data.json'
     SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
     creds = None
     creds = service_account.Credentials.from_service_account_file(service_account_file, scopes=SCOPES)
@@ -28,14 +29,14 @@ def update_data():
     df.Yonalish = df.Yonalish = df.Yonalish.apply(lambda x: 'Data Science' if x == 'DS' else ('Software Engineering' if x == 'SE' else 'Full Stack'))
     df["Soni"] = 1
 
-    return df.to_csv('feedback.csv')
+    return df.to_csv(f'{BASE_DIR}/data/feedback.csv')
 
 
 schedule.every().day.at("00:00").do(update_data)
 
 
 def df_data():
-    return pd.read_csv('feedback.csv')
+    return pd.read_csv(f'{BASE_DIR}/data/feedback.csv')
 
 
 st.set_page_config(layout="wide")
