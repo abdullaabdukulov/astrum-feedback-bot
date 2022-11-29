@@ -1,26 +1,27 @@
-# from datetime import time
 import time
-
-from aiogram import types, Dispatcher
-from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
+from aiogram.dispatcher.filters.state import State, StatesGroup
+from aiogram import types, Dispatcher
 
-from admin.analysis.vizual_part import umumit_analitika, data_science_analitika, \
-    full_stack_analitika, soft_engineer_analitika, mentors_analysis
+from admin.analysis.vizual_part import umumit_analitika, data_science_analitika, full_stack_analitika, mentors_analysis, \
+    soft_engineer_analitika
 from admin.handlers import others
-from admin.handlers.others import add_mentor_query, mentor_delete_query, get_users, add_admin, \
-    delete_admin, edit_password, add_user_access, check_analysis_users, delete_user_access
-from admin.keyboards import inlines
-from admin.keyboards import admin_kb
-from handlers.users.telegram_bots import main_kb, edit_password_kb, main_analysis, access_user_kb, \
-    view_analysis_kb
-from admin.keyboards.inlines import analysis_direction, all_ds_inline, all_ds_list, \
-    all_fs_inline, all_fs_list, all_se_inline, all_se_list, umumiy_analysis_inl, mentors_umummiy_inl
+from admin.handlers.others import add_mentor_query, mentor_delete_query, get_users, add_admin, delete_admin, \
+    edit_password, add_user_access, check_analysis_users, delete_user_access
+from admin.keyboards import admin_kb, inlines
+from admin.keyboards.admin_kb import main_kb, edit_password_kb, main_analysis, access_user_kb, view_analysis_kb
+from admin.keyboards.inlines import all_ds_inline, all_fs_inline, all_fs_list, all_se_inline, all_se_list, \
+    analysis_direction, umumiy_analysis_inl, mentors_umummiy_inl
 from keyboards.default.menu_keyboard import menu
-from loader import bot, dp
+from loader import dp, bot
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent  # /Users/student/web_scraping/astrum-feedback-bot
 
 
 ###### ADMIN ##########
+
 @dp.message_handler(commands=['admin'])
 async def admin_main(message: types.Message):
     if others.check_admin(message.from_user.id):
@@ -405,8 +406,8 @@ async def send_visual_fs(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer('kuting!')
     full_stack_analitika(call.data[:-1])
-    photo1 = f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/directions/full_stack/{call.data[:-1]}_1.png'
-    photo2 = f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/directions/full_stack/{call.data[:-1]}_2.png'
+    photo1 = f'{BASE_DIR}/data/visual/directions/full_stack/{call.data[:-1]}_1.png'
+    photo2 = f'{BASE_DIR}/data/visual/directions/full_stack/{call.data[:-1]}_2.png'
     # print(call.message.text)
     p1 = open(photo1, 'rb')
     p2 = open(photo2, 'rb')
@@ -428,8 +429,8 @@ async def send_visual_se(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer('kuting!')
     soft_engineer_analitika(call.data[:-1])
-    photo1 = f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/directions/software/{call.data[:-1]}_1.png'
-    photo2 = f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/directions/software/{call.data[:-1]}_2.png'
+    photo1 = f'{BASE_DIR}/data/visual/directions/software/{call.data[:-1]}_1.png'
+    photo2 = f'{BASE_DIR}/visual/directions/software/{call.data[:-1]}_2.png'
     # print(call.message.text)
     p1 = open(photo1, 'rb')
     p2 = open(photo2, 'rb')
@@ -465,8 +466,8 @@ async def umumiy_yonalish(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer('kuting!')
     umumit_analitika()
-    photo1 = '/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/umumiy/yonalish/all.png'
-    photo2 = '/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/umumiy/yonalish/all2.png'
+    photo1 = f'{BASE_DIR}/data/visual/umumiy/yonalish/all.png'
+    photo2 = f'{BASE_DIR}/data/visual/umumiy/yonalish/all2.png'
     p1 = open(photo1, 'rb')
     p2 = open(photo2, 'rb')
     await bot.send_photo(call.from_user.id, photo=p1)
@@ -487,8 +488,8 @@ async def umumiy_mentor_part_2(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer('Kuting..')
     mentors_analysis(yonalish)
-    photo1 = f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/umumiy/mentor/{yonalish}.png'
-    photo2 = f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/umumiy/mentor/{yonalish}_1.png'
+    photo1 = f'{BASE_DIR}/data/visual/umumiy/mentor/{yonalish}.png'
+    photo2 = f'{BASE_DIR}/data/visual/umumiy/mentor/{yonalish}_1.png'
     p1 = open(photo1, 'rb')
     p2 = open(photo2, 'rb')
     await bot.send_photo(call.from_user.id, photo=p1)

@@ -1,6 +1,6 @@
 import sqlite3
-from pathlib import Path
 import json
+from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent  # /Users/student/web_scraping/astrum-feedback-bot
 
