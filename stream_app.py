@@ -10,7 +10,7 @@ from google.oauth2 import service_account
 import pandas as pd
 import schedule
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 
 def update_data():
@@ -29,14 +29,14 @@ def update_data():
     df.Yonalish = df.Yonalish = df.Yonalish.apply(lambda x: 'Data Science' if x == 'DS' else ('Software Engineering' if x == 'SE' else 'Full Stack'))
     df["Soni"] = 1
 
-    return df.to_csv(f'{BASE_DIR}data/feedback.csv')
+    return df.to_csv(f'{BASE_DIR}/data/feedback.csv')
 
 
 schedule.every().day.at("00:00").do(update_data)
 
 
 def df_data():
-    return pd.read_csv(f'{BASE_DIR}data/feedback.csv')
+    return pd.read_csv(f'{BASE_DIR}/data/feedback.csv')
 
 
 st.set_page_config(layout="wide")
