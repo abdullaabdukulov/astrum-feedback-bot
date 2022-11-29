@@ -9,6 +9,9 @@ from googleapiclient.discovery import build
 from google.oauth2 import service_account
 import pandas as pd
 import schedule
+import sys
+
+sys.path.insert(1, "C:/past/your/coppied/path/here/streamlit_option_menu")
 
 BASE_DIR = Path(__file__).resolve().parent
 
