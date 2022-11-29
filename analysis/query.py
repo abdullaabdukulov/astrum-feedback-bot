@@ -3,12 +3,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent  # /Users/student/web_scraping/astrum-feedback-bot
 
-
-# print(BASE_DIR)
+db_file = f"{BASE_DIR}/data/user.db"
 
 
 def all_mentors():
-    conn = sqlite3.connect(db_path)
+    conn = sqlite3.connect(db_file)
     cursor = conn.cursor()
     data = cursor.execute("""SELECT full_name, directions FROM mentors""")
     result = []
@@ -28,4 +27,3 @@ def all_mentors():
 
     return result_2
 
-# print(all_mentors())
