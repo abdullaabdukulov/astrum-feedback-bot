@@ -11,7 +11,7 @@ import pandas as pd
 import schedule
 import sys
 
-sys.path.insert(1, "C:/past/your/coppied/path/here/streamlit_option_menu")
+sys.path.insert(1, "C:/past/your/coppied/path/here/st_aggrid")
 
 BASE_DIR = Path(__file__).resolve().parent
 
