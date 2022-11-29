@@ -108,10 +108,13 @@ def show_mentors_list():
     time = st.sidebar.selectbox("Vaqtni tanlash:", time_of_analysis)
 
 
-def add_logo(logo_path, width, height):
-    logo = Image.open(logo_path)
-    modified_logo = logo.resize((width, height))
-    return modified_logo
+# def add_logo(logo_path, width, height):
+#     logo = Image.open(logo_path)
+#     modified_logo = logo.resize((width, height))
+#     return modified_logodef add_logo(logo_path, width, height):
+#     logo = Image.open(logo_path)
+#     modified_logo = logo.resize((width, height))
+#     return modified_logo
 
 
 # print(df)
@@ -227,8 +230,8 @@ def analysis():
 
 def main():
     st.markdown("<h1 style='text-align: left; color: Blue;'><b>Astrum</b></h1>", unsafe_allow_html=True)
-    my_logo = add_logo(logo_path="image.jpg", width=230, height=300)
-    st.sidebar.image(my_logo)
+    # my_logo = add_logo(logo_path="image.jpg", width=230, height=300)
+    # st.sidebar.image(my_logo)
     add_navigator()
     show_title()
     selection = st.sidebar.radio('Menu', options=['Home', 'Hisobot datasi', 'Hisobot vizualizatsiyasi'])
