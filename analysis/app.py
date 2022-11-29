@@ -5,15 +5,15 @@ from PIL import Image
 import plotly.express as px
 import requests
 from streamlit_lottie import st_lottie
-from query import all_mentors
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
 import pandas as pd
+import schedule
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-def df_data():
+def update_data():
     service_account_file = f'{BASE_DIR}/data/Google_servis_data.json'
     SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
     creds = None
@@ -29,7 +29,14 @@ def df_data():
     df.Yonalish = df.Yonalish = df.Yonalish.apply(lambda x: 'Data Science' if x == 'DS' else ('Software Engineering' if x == 'SE' else 'Full Stack'))
     df["Soni"] = 1
 
-    return df
+    return df.to_csv('../data/feedback.csv')
+
+
+schedule.every().day.at("00:00").do(update_data)
+
+
+def df_data():
+    return pd.read_csv('../data/feedback.csv')
 
 
 st.set_page_config(layout="wide")
