@@ -1,28 +1,20 @@
+from pathlib import Path
 import streamlit as st
-import numpy as np
-import pandas as pd
 from st_aggrid import AgGrid
 from PIL import Image
 import plotly.express as px
-
-from datetime import datetime
-import calendar
-
-import json
 import requests
 from streamlit_lottie import st_lottie
-
-import matplotlib.pyplot as plt
-
 from query import all_mentors
-
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
 import pandas as pd
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 def df_data():
-    service_account_file = '/Users/student/Desktop/bot/My_Mentor_feedback_bot/analysis part/Test bot/Google_servis_data.json'
+    service_account_file = f'{BASE_DIR}/data/Google_servis_data.json'
     SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
     creds = None
     creds = service_account.Credentials.from_service_account_file(service_account_file, scopes=SCOPES)
@@ -88,12 +80,11 @@ def show_mentors_list():
         "Full Stack",
         "Software Engineering",
     )
+    ds_mentors = df_data()[df_data()['Yonalish'] == 'Data Science']['Name'].unique()
 
-    ds_mentors = all_mentors()['ds_mentors']
+    fs_mentors = df_data()[df_data()['Yonalish'] == 'Full Stack']['Name'].unique()
 
-    fs_mentors = all_mentors()['fs_mentors']
-
-    se_mentors = all_mentors()['se_mentors']
+    se_mentors = df_data()[df_data()['Yonalish'] == 'Software Engineering']['Name'].unique()
 
     time_of_analysis = (
         "Oylik analitika",
@@ -249,20 +240,6 @@ def main():
     if selection == "Hisobot datasi":
         df = hisobot()
         AgGrid(df, height=700, fit_columns_on_grid_load=True)
-
-
-        # lottie_hello = entry("https://assets8.lottiefiles.com/packages/lf20_3rqwsqnj.json")
-        # st_lottie(
-        #     lottie_hello,
-        #     speed=1,
-        #     reverse=False,
-        #     loop=True,
-        #     quality="low",  # medium ; high
-        #     height=500,
-        #     width=500,
-        #     key=None,
-        # )
-
 
     if selection == "Hisobot vizualizatsiyasi":
         show_mentors_list()

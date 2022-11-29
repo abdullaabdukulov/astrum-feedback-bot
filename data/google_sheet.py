@@ -1,38 +1,29 @@
 import json
+from pathlib import Path
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
 import datetime
-# from oauth2client.service_account import ServiceAccountCredentials
 from data.query import save_row
 
-service_account_file = '/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/Google_servis_data.json'
+BASE_DIR = Path(__file__).resolve().parent.parent
+service_account_file = f'{BASE_DIR}/data/Google_servis_data.json'
 
 SCOPES = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
           "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 
 creds = service_account.Credentials.from_service_account_file(service_account_file, scopes=SCOPES)
-# The ID and range of a sample spreadsheet.
+
 SAMPLE_SPREADSHEET_ID = '1rgfEQdRBtD-AXtu3kfAvTUEwe0qkOpY2RRLSsGDBlrw'
 
 service = build('sheets', 'v4', credentials=creds)
 
-# Call the Sheets API
 sheet = service.spreadsheets()
 
-# UPDATED_MESSAGES = [["bir"]]
-# sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID,
-#                       range=f"sheet1!A3", valueInputOption="USER_ENTERED",
-#                       body={'values': UPDATED_MESSAGES}).execute()
 
-
-# rows = [{"q_li": ["D", "E", "F"]}, {"n_li": ["G", "H", "I"]}, {"q_siz": ["J", "K", "L"]}]
-# caty = ['A', "B", "C"]
-
-with open('/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/save_row.json', 'r') as f:
+with open(f'{BASE_DIR}/data/save_row.json', 'r') as f:
     s = json.load(f)
     f.close()
 sheets_num = s
-# dataa = ["Otabek Astanov", "DS", "Namunali", "A"]
 
 
 def google_sheet_add(data):

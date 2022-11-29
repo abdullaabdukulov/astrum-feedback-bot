@@ -1,6 +1,7 @@
 import sqlite3
 import json
 from pathlib import Path
+from sqlite3 import connect
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -10,7 +11,6 @@ row_path = f"{BASE_DIR}/data/save_row.json"
 
 
 def mentors_datas():
-    from sqlite3 import connect
     conn = connect(db_file)
     curr = conn.cursor()
     data = curr.execute("""
@@ -24,7 +24,6 @@ def mentors_datas():
 
 
 def users_data():
-    from sqlite3 import connect
     conn = connect(db_file)
     curr = conn.cursor()
     data = curr.execute("""
@@ -38,7 +37,6 @@ def users_data():
 
 
 def users_add(user_id, direction, last_feedback):
-    from sqlite3 import connect
     conn = connect(db_file)
     curr = conn.cursor()
     curr.execute("INSERT INTO users values(?,?,?)", (user_id, direction, last_feedback))
