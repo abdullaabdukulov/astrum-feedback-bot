@@ -4,7 +4,7 @@ from pathlib import Path
 import pandas as pd
 import plotly.express as px
 
-BASE_DIR = Path(__file__).resolve().parent.parent  # /Users/student/web_scraping/astrum-feedback-bot
+BASE_DIR = Path(__file__).resolve().parent.parent.parent  # /Users/student/web_scraping/astrum-feedback-bot
 
 
 def df_data():
@@ -79,4 +79,4 @@ def mentors_analysis(direction):
     fig.write_image(f"{BASE_DIR}/data/visual/umumiy/mentor/{direction}.png")
     fig1.write_image(f"{BASE_DIR}/data/visual/umumiy/mentor/{direction}_1.png")
 
-mentors_analysis('Data Science')
+# mentors_analysis('Data Science')

@@ -11,7 +11,7 @@ from admin.handlers.others import add_mentor_query, mentor_delete_query, get_use
 from admin.keyboards import admin_kb, inlines
 from admin.keyboards.admin_kb import main_kb, edit_password_kb, main_analysis, access_user_kb, view_analysis_kb
 from admin.keyboards.inlines import all_ds_inline, all_fs_inline, all_fs_list, all_se_inline, all_se_list, \
-    analysis_direction, umumiy_analysis_inl, mentors_umummiy_inl
+    analysis_direction, umumiy_analysis_inl, mentors_umummiy_inl, all_ds_list
 from keyboards.default.menu_keyboard import menu
 from loader import dp, bot
 from pathlib import Path

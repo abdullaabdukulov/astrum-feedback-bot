@@ -2,7 +2,7 @@ import sqlite3
 import json
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent  # /Users/student/web_scraping/astrum-feedback-bot
+BASE_DIR = Path(__file__).resolve().parent.parent.parent  # /Users/student/web_scraping/astrum-feedback-bot
 
 db_file = f"{BASE_DIR}/data/user.db"
 
@@ -152,6 +152,7 @@ def all_ds():
         result.append(a[0])
     return result
 
+# print(all_ds())
 
 def all_fs():
     conn = sqlite3.connect(db_file)
