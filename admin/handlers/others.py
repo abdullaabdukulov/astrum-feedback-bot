@@ -10,7 +10,6 @@ json_file = f"{BASE_DIR}/data/password.json"
 
 
 def check_admin(number):
-    import sqlite3
     with sqlite3.connect(db_file) as db:
         cursor = db.cursor()
         check = cursor.execute(f"SELECT EXISTS(SELECT 1 FROM admins WHERE id={number})").fetchone()[0]

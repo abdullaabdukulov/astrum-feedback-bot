@@ -1,11 +1,14 @@
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
+from pathlib import Path
 import pandas as pd
 import plotly.express as px
 
+BASE_DIR = Path(__file__).resolve().parent.parent  # /Users/student/web_scraping/astrum-feedback-bot
+
 
 def df_data():
-    service_account_file = '/Users/student/Desktop/bot/My_Mentor_feedback_bot/handlers/users/telegram_bots/analysis/Google_servis_data.json'
+    service_account_file = f"{BASE_DIR}/data/Google_servis_data.json"
     SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
     creds = None
     creds = service_account.Credentials.from_service_account_file(service_account_file, scopes=SCOPES)
@@ -25,8 +28,8 @@ def umumit_analitika():
     fig = px.histogram(df_data(), y="Yonalish", color="Feedback", barmode="group", width=1000, height=600,
                        title="Bu Yo'nalishlarning olgan feedbaklari")
     fig1 = px.histogram(df_data(), x='Yonalish', y="Ball", width=600, height=650, title="Bu yo'nalishlarni umumiy balli")
-    fig.write_image("/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/umumiy/yonalish/all.png")
-    fig1.write_image("/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/umumiy/yonalish/all2.png")
+    fig.write_image(f"{BASE_DIR}/data/visual/umumiy/yonalish/all.png")
+    fig1.write_image(f"{BASE_DIR}/data/visual/umumiy/yonalish/all2.png")
 
 # umumit_analitika()
 # df_data()
@@ -40,8 +43,8 @@ def data_science_analitika(name):
                        title=f"Bu {name} olgan feedbaklari")
     mentor['ball'] = 1
     fig2 = px.pie(values=mentor.ball, names=mentor.Sabab, title=f'{name}ning kammentariyalar analizi')
-    fig.write_image(f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/directions/data_science/{name}_1.png')
-    fig2.write_image(f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/directions/data_science/{name}_2.png')
+    fig.write_image(f"{BASE_DIR}/data/visual/directions/data_science/{name}_1.png")
+    fig2.write_image(f"{BASE_DIR}/data/visual/directions/data_science/{name}_2.png")
 
 # data_science_analitika('Komiljon Xamidjonov')
 
@@ -53,8 +56,8 @@ def full_stack_analitika(name):
                        title=f"Bu {name} olgan feedbaklari")
     mentor['ball'] = 1
     fig2 = px.pie(values=mentor.ball, names=mentor.Sabab, title=f'{name}ning kammentariyalar analizi')
-    fig.write_image(f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/directions/full_stack/{name}_1.png')
-    fig2.write_image(f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/directions/full_stack/{name}_2.png')
+    fig.write_image(f"{BASE_DIR}/data/visual/directions/full_stack/{name}_1.png")
+    fig2.write_image(f"{BASE_DIR}/data/visual/directions/full_stack/{name}_2.png")
 
 
 def soft_engineer_analitika(name):
@@ -64,8 +67,8 @@ def soft_engineer_analitika(name):
                        title=f"Bu {name} olgan feedbaklari")
     mentor['ball'] = 1
     fig2 = px.pie(values=mentor.ball, names=mentor.Sabab, title=f'{name}ning kammentariyalar analizi')
-    fig.write_image(f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/directions/software/{name}_1.png')
-    fig2.write_image(f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/directions/software/{name}_2.png')
+    fig.write_image(f"{BASE_DIR}/data/visual/directions/software/{name}_1.png")
+    fig2.write_image(f"{BASE_DIR}/data/visual/directions/software/{name}_2.png")
 
 
 def mentors_analysis(direction):
@@ -73,7 +76,7 @@ def mentors_analysis(direction):
     fig = px.histogram(yonalish, y="Name", color="Feedback", barmode="group", width=1000, height=600,
                        title=f"Bu {direction} mentorlarning olgan feedbaklari")
     fig1 = px.histogram(yonalish, x='Name', y="Ball", width=600, height=650, title=f"Bu {direction} mentorlarning umumiy balli")
-    fig.write_image(f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/umumiy/mentor/{direction}.png')
-    fig1.write_image(f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/umumiy/mentor/{direction}_1.png')
+    fig.write_image(f"{BASE_DIR}/data/visual/umumiy/mentor/{direction}.png")
+    fig1.write_image(f"{BASE_DIR}/data/visual/umumiy/mentor/{direction}_1.png")
 
 mentors_analysis('Data Science')
