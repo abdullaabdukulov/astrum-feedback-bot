@@ -7,4 +7,4 @@
 <a href="https://www.canva.com/design/DAFNDQKEYlo/R1I4lsMbc9SWfWWTkyt6gw/view?utm_content=DAFNDQKEYlo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" style="font-size: 25px">
 Batafsil
 </a>
-<a href="https://abdullaabdukulov-astrum-feedback-bot-analysisapp-u612ev.streamlit.app/"><h3>DEMO</h3></a>
+<h3><a href="https://abdullaabdukulov-astrum-feedback-bot-analysisapp-u612ev.streamlit.app/">DEMO</a></h3>
