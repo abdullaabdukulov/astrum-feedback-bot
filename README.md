@@ -17,5 +17,6 @@ Learn more
 
 ## Demo
 
-<h3>Check out our demo version of the web part of project <a href="http://45.90.216.74:8501">here</a>.</h3>
+<h3>Check out our demo version of the web part of the project <a href="http://45.90.216.74:8501">here.</h3>
 
+<h3>Check out our demo version of the GoogleSheets part of the project <a href="https://docs.google.com/spreadsheets/d/1rgfEQdRBtD-AXtu3kfAvTUEwe0qkOpY2RRLSsGDBlrw/edit?usp=sharing">here</a>.</h3>
