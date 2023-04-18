@@ -1,3 +1,4 @@
+import socket
 from pathlib import Path
 import streamlit as st
 from st_aggrid import AgGrid
@@ -9,7 +10,8 @@ from google.oauth2 import service_account
 import pandas as pd
 import schedule
 
-
+# Get the IP address of the machine running the app
+ip_address = socket.gethostbyname(socket.gethostname())
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -44,25 +46,24 @@ st.set_page_config(layout="wide")
 
 def add_navigator():
     st.markdown(
-        '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">',
+        f'<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">',
         unsafe_allow_html=True)
 
-    st.markdown(""" 
-   <nav class="navbar navbar-expand-lg navbar-dark" class="navbar navbar-dark bg-dark" style="background-color: #3498DB;">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="http://172.20.16.8:8505/" onclick="window.open("http://172.20.16.8:8505/"); return false;" class="text-dark">Home</a>
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="navbar-brand" class="text-primary" href="https://t.me/MyMentorsFeedbackAnalysis_bot">Telegram <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-  </div>
-</nav>
-    """, unsafe_allow_html=True)
-
+    st.markdown(f""" 
+       <nav class="navbar navbar-expand-lg navbar-dark" class="navbar navbar-dark bg-dark" style="background-color: #3498DB;">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="http://{ip_address}:8501/" onclick="window.open('http://{ip_address}:8501/'); return false;" class="text-dark">Home</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="navbar-brand" class="text-primary" href="https://t.me/FeedbackAnalysis_bot">Telegram <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+        """, unsafe_allow_html=True)
 
 def entry(url: str):
     r = requests.get(url)
