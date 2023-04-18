@@ -1,4 +1,4 @@
-from aiogram import types
+from aiogram import types, Dispatcher
 from aiogram.dispatcher.filters.builtin import CommandHelp
 
 from loader import dp
@@ -12,3 +12,7 @@ async def bot_help(message: types.Message):
             "/analysis - Mentorlar analitikasiga kirish",
             "/direction - Yo'nalishni o'zgartirish")
     await message.answer("\n".join(text))
+
+
+def register_handler_help(db: Dispatcher):
+    dp.message_handler(bot_help, commands=['admin'])

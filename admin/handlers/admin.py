@@ -17,9 +17,9 @@ from loader import dp, bot
 from pathlib import Path
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent  # /Users/student/web_scraping/astrum-feedback-bot
+BASE_DIR = Path(__file__).resolve().parent.parent.parent  # /Users/student/web_scraping/astrum-feedback-bot
 
-
+print(BASE_DIR)
 ###### ADMIN ##########
 
 @dp.message_handler(commands=['admin'])
@@ -126,11 +126,13 @@ async def elon_part_2(message: types.Message, state=FSMContext):
     await state.finish()
     try:
         loading = await message.answer('Jo\'natilmoqda...')
-        for a in get_users():
+        for a in get_users()[0]:
             await bot.send_message(a, text=db['reklama'])
             time.sleep(1)
+
     except:
         print('Xatolik elon partda')
+        print(get_users())
     await loading.delete()
     await message.answer(text='Muvofaqqiyatli bajarildi.', reply_markup=main_kb)
 
@@ -382,10 +384,10 @@ async def analysis_view_part_3(call: types.CallbackQuery):
 async def send_visual_ds(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer('kuting!')
+    print(call.data[-1])
     data_science_analitika(call.data[:-1])
-    photo1 = f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/directions/data_science/{call.data[:-1]}_1.png'
-    photo2 = f'/Users/student/Desktop/bot/My_Mentor_feedback_bot/data/visual/directions/data_science/{call.data[:-1]}_2.png'
-    # print(call.message.text)
+    photo1 = f"{BASE_DIR}/data/visual/directions/data_science/{call.data[:-1]}_1.png"
+    photo2 = f"{BASE_DIR}/data/visual/directions/data_science/{call.data[:-1]}_2.png"
     p1 = open(photo1, 'rb')
     p2 = open(photo2, 'rb')
     await bot.send_photo(call.from_user.id, photo=p1)
