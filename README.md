@@ -17,5 +17,5 @@ Learn more
 
 ## Demo
 
-<h3>Check out our demo version of the web part of project [here](http://45.90.216.74:8501).</h3>
+<h3>Check out our demo version of the web part of project <a href="http://45.90.216.74:8501">here</a>.</h3>
 
